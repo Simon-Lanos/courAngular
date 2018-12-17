@@ -1,0 +1,22 @@
+<div>
+  {{tableau | json}}
+  <div>
+    {{obj | json}}
+  </div>
+  <input type="text" [(ngModel)]="obj.name">
+  <ul>
+    <li *ngFor="let el of tableau" class="{{el}}">
+      <span [class.blue]="el == 'coucou'">{{el}}</span>
+      <button (click)="alert(el)">Alert {{el}}</button>
+      <input type="text" [(ngModel)]="el">
+    </li>
+  </ul>
+
+  <button (click)="coucou()">Coucou</button>
+  <button (click)="alert('salut')">Alert salut</button>
+
+  <input type="text" [(ngModel)]="addValue">
+  <button type="button" (click)="append()">Ajouter</button>
+
+  <button type="button" (click)="append2(addValue)">Ajouter2</button>
+</div>

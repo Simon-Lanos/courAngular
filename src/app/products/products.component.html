@@ -1,0 +1,23 @@
+<div class="products">
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Prix</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+        <td>
+          <a routerLink="/products/{{product.id}}">Afficher</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
