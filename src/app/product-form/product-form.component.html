@@ -1,0 +1,16 @@
+<div>
+  <label for="">Nom</label>
+  <input type="text" [(ngModel)]="product.name">
+</div>
+<div>
+  <label for="">Prix</label>
+  <input type="number" [(ngModel)]="product.price">
+</div>
+<div>
+  <label for="">Image</label>
+  <input type="text" [(ngModel)]="product.image">
+</div>
+
+<div class="">
+  <a (click)="save()">Enregistrer</a>
+</div>

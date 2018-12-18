@@ -1,4 +1,5 @@
 <div class="products">
+  <input type="text" [(ngModel)]="search.price" />
   <table>
     <thead>
       <tr>
@@ -9,12 +10,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of products">
+      <tr *ngFor="let product of products | filter:search:search.price">
         <td>{{product.id}}</td>
         <td>{{product.name}}</td>
-        <td>{{product.price}}</td>
+        <td>
+          <app-product-price [symbol]="'$'" [price]="product.price">
+          </app-product-price>
+        </td>
         <td>
           <a routerLink="/products/{{product.id}}">Afficher</a>
+          <button (click)="delete(product)">Supprimer</button>
         </td>
       </tr>
     </tbody>

@@ -1,43 +1,47 @@
 import { Injectable } from '@angular/core';
-//import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { Product } from "./classes/product";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  products:[];
+  products: Product[];
+  //products: Array<Product>;
+
   constructor(private http:HttpClient) {
-    this.products = [
-      {
-        id:1,
-        name: "Product 1",
-        price:500,
-        image: "http://placehold.it/100/110"
-      },
-      {
-        id:2,
-        name: "Product 2",
-        price:200,
-        image: "http://placehold.it/100/110"
-      }
-    ];
   }
 
-  list() {
-    return this.http.get("/assets/products.json");
+  create(datas) {
+    return this.http
+    .post("http://localhost:3000/products", datas)
+    .pipe(
+      catchError( error => console.log(error))
+    );
+  }
+
+  delete(id) {
+    return this.http.delete("http://localhost:3000/products/" + id);
+  }
+
+  update(product) {
+    return this.http.put("http://localhost:3000/products/" + product.id, product);
+  }
+
+  handleError(error) {
+    console.log(error);
+  }
+
+  list(){
+    return this.http.get("http://localhost:3000/products/");
   }
 
   get(id) {
-    for(let product of this.products) {
-      console.log(product);
-      if(product.id == id) {
-        return of(product);
-      }
-    }
-    return of({});
+    return this.http.get("http://localhost:3000/products/" + id);
   }
 
 }
